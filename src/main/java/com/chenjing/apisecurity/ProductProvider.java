@@ -1,6 +1,5 @@
 package com.chenjing.apisecurity;
 
-import com.chenjing.apisecurity.hmac.HmacProperties;
 
 /**
  * @author Chenjing
@@ -14,7 +13,7 @@ public interface ProductProvider {
      *
      * @param key url参数名={@code HmacProperties.productKeyName}的值
      * @return 产品信息
-     * @see HmacProperties
+     * @see ApiProperties.HmacProperties
      */
     Product getProduct(String key);
 }

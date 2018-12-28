@@ -7,7 +7,6 @@ import com.chenjing.apisecurity.exception.InvalidHeaderException;
 import com.chenjing.apisecurity.exception.InvalidParamException;
 import com.chenjing.apisecurity.exception.InvalidSignException;
 import com.chenjing.apisecurity.exception.ProductException;
-import com.chenjing.apisecurity.hmac.HmacProperties;
 import com.chenjing.apisecurity.hmac.SignBuilder;
 import com.chenjing.apisecurity.wrapper.HttpRequestWrapper;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +39,7 @@ public class HmacFilter implements Filter {
 
     private SignBuilder signBuilder;
 
-    private HmacProperties hmacProperties;
+    private ApiProperties.HmacProperties hmacProperties;
 
     private Environment environment;
 

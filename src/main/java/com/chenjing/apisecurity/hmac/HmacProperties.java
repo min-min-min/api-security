@@ -1,6 +1,9 @@
 package com.chenjing.apisecurity.hmac;
 
+import com.google.common.net.HttpHeaders;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * hmac config properties
@@ -11,20 +14,11 @@ import lombok.Data;
 @Data
 public class HmacProperties {
 
-    /**
-     * enabled or disable hmac sign
-     * default {@code true}
-     */
-    private boolean enabled = true;
-
-    /**
-     * product name
-     * e.g. get {@code privateKey} from product name
-     */
-    private String productName;
-
-    /**
-     * for encrypt data
-     */
     private String encryptKey;
+
+    private List<String> urlPatterns;
+
+    private String headerName = HttpHeaders.AUTHORIZATION;
+
+    private List<String> excludeProfiles;
 }

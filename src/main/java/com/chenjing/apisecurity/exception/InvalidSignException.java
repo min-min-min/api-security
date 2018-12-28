@@ -8,7 +8,7 @@ package com.chenjing.apisecurity.exception;
  */
 public class InvalidSignException extends RuntimeException {
 
-    public InvalidSignException(String serverSign) {
-        super("the client sign doesn't match server sign, server sign is " + serverSign);
+    public InvalidSignException() {
+        super("the client sign doesn't match server sign");
     }
 }

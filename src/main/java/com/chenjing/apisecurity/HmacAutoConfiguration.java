@@ -31,10 +31,13 @@ public class HmacAutoConfiguration {
     @Autowired
     private Environment environment;
 
+    @Autowired
+    private ProductProvider productProvider;
+
     @Bean
     public FilterRegistrationBean hmacFilter() {
         log.info("init hmac filter");
-        HmacFilter hmacFilter = new HmacFilter(signBuilder, apiProperties, environment);
+        HmacFilter hmacFilter = new HmacFilter(signBuilder, apiProperties, environment, productProvider);
         FilterRegistrationBean<HmacFilter> registration = new FilterRegistrationBean<>();
         List<String> urlPatterns = apiProperties.getHmac().getUrlPatterns();
         registration.addUrlPatterns(urlPatterns.toArray(new String[0]));

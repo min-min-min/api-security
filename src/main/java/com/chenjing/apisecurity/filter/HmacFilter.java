@@ -1,8 +1,12 @@
 package com.chenjing.apisecurity.filter;
 
 import com.chenjing.apisecurity.ApiProperties;
+import com.chenjing.apisecurity.Product;
+import com.chenjing.apisecurity.ProductProvider;
 import com.chenjing.apisecurity.exception.InvalidHeaderException;
+import com.chenjing.apisecurity.exception.InvalidParamException;
 import com.chenjing.apisecurity.exception.InvalidSignException;
+import com.chenjing.apisecurity.exception.ProductException;
 import com.chenjing.apisecurity.hmac.HmacProperties;
 import com.chenjing.apisecurity.hmac.SignBuilder;
 import com.chenjing.apisecurity.wrapper.HttpRequestWrapper;
@@ -26,10 +30,12 @@ import java.util.Objects;
 @Slf4j
 public class HmacFilter implements Filter {
 
-    public HmacFilter(SignBuilder signBuilder, ApiProperties apiProperties, Environment environment) {
+    public HmacFilter(SignBuilder signBuilder, ApiProperties apiProperties, Environment environment,
+                      ProductProvider productProvider) {
         this.signBuilder = signBuilder;
         this.hmacProperties = apiProperties.getHmac();
         this.environment = environment;
+        this.productProvider = productProvider;
     }
 
     private SignBuilder signBuilder;
@@ -37,6 +43,8 @@ public class HmacFilter implements Filter {
     private HmacProperties hmacProperties;
 
     private Environment environment;
+
+    private ProductProvider productProvider;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -56,14 +64,22 @@ public class HmacFilter implements Filter {
 
     private void validateSign(HttpRequestWrapper requestWrapper) throws IOException {
         log.debug("payload is  {}", requestWrapper.getPayloadAsString());
-        String serverSign = signBuilder.build(hmacProperties.getEncryptKey(), requestWrapper);
+        String productKeyValue = requestWrapper.getParameter(hmacProperties.getProductUrlParamName());
+        if (productKeyValue == null) {
+            throw new InvalidParamException(hmacProperties.getProductUrlParamName());
+        }
+        Product product = productProvider.getProduct(productKeyValue);
+        if (product == null) {
+            throw new ProductException(productKeyValue);
+        }
+        String serverSign = signBuilder.build(product.getEncryptKey(), requestWrapper);
         String clientSign = requestWrapper.getHeader(hmacProperties.getHeaderName());
         if (clientSign == null) {
             throw new InvalidHeaderException(hmacProperties.getHeaderName());
         }
         log.debug("server sign = {},client sign = {}", serverSign, clientSign);
         if (!Objects.equals(serverSign, clientSign)) {
-            throw new InvalidSignException(serverSign);
+            throw new InvalidSignException();
         }
     }
 

@@ -1,5 +1,6 @@
 package com.chenjing.apisecurity;
 
+import com.google.common.collect.Lists;
 import com.google.common.net.HttpHeaders;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,6 +15,9 @@ import java.util.List;
 @Data
 public class ApiProperties {
 
+    /**
+     * hmac验签属性
+     */
     private HmacProperties hmac;
 
     @Data
@@ -32,7 +36,7 @@ public class ApiProperties {
         /**
          * 对哪些url进行验签
          */
-        private List<String> urlPatterns;
+        private List<String> urlPatterns = Lists.newArrayList("/api/*");
 
         /**
          * 从客户端的哪个头部参数获取客户端签名后的值

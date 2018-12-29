@@ -22,7 +22,7 @@ public class HttpRequestWrapper extends HttpServletRequestWrapper {
     private static final String ENCODING = "UTF-8";
     private static final String EMPTY_STRING = "";
 
-    private final byte[] payload;
+    private byte[] payload;
 
     public HttpRequestWrapper(final HttpServletRequest request) throws IOException {
         super(request);
@@ -41,6 +41,15 @@ public class HttpRequestWrapper extends HttpServletRequestWrapper {
         }
 
         return IOUtils.toString(payload, ENCODING);
+    }
+
+    /**
+     * 重新设置body
+     *
+     * @param payload body
+     */
+    public void setPayload(byte[] payload) {
+        this.payload = payload;
     }
 
     @Override

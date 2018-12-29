@@ -1,2 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.chenjing.apisecurity.HmacAutoConfiguration
+com.chenjing.apisecurity.HmacAutoConfiguration,\
+com.chenjing.apisecurity.DecryptAutoConfiguration,\
+com.chenjing.apisecurity.EncryptAutoConfiguration

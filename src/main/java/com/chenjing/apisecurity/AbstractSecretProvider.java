@@ -7,7 +7,8 @@ import com.google.common.base.Preconditions;
 import org.springframework.util.StringUtils;
 
 /**
- * 可继承该类交给spring管理定义自己的加解密方法
+ * 可继承该类并交给spring管理
+ * 自定义自己的加解密方法
  *
  * @author Chenjing
  * @date 2018/12/29

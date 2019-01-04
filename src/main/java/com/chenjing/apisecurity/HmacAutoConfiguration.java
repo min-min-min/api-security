@@ -19,7 +19,7 @@ import java.util.List;
 
 @Configuration
 @EnableConfigurationProperties(ApiProperties.class)
-@ConditionalOnProperty(prefix = "api.hmac", value = "enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(prefix = "api.hmac", value = "enabled", havingValue = "true")
 @Slf4j
 @Import(SpringActiveUtils.class)
 public class HmacAutoConfiguration {

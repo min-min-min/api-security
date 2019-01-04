@@ -22,7 +22,7 @@ public class HmacSha256Sign implements SignBuilder {
 
     @Override
     public String build(String encryptKey, HttpRequestWrapper httpRequestWrapper) throws IOException {
-        Preconditions.checkNotNull(encryptKey, "encryptKey should not be null");
+        Preconditions.checkNotNull(encryptKey, "hmac encryptKey should not be null");
         LinkedHashMap<String, String> parameters = new LinkedHashMap<>();
         parameters.put("method", httpRequestWrapper.getMethod());
         parameters.put("requestURI", httpRequestWrapper.getRequestURI());

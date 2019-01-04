@@ -41,11 +41,6 @@ public class ApiProperties {
         private boolean enabled = true;
 
         /**
-         * 产品标识名称，默认product_key
-         */
-        private String productUrlParamName = "product_key";
-
-        /**
          * 对哪些url进行验签，默认/api/*
          */
         private List<String> urlPatterns = Lists.newArrayList("/api/*");

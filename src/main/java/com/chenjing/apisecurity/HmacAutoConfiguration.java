@@ -52,7 +52,7 @@ public class HmacAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(SignBuilder.class)
     public SignBuilder hmacSha256sign() {
-        log.info("init System hmacSha256 sign...");
+        log.info("init System hmacSha256 sign");
         return new HmacSha256Sign();
     }
 }

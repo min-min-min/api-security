@@ -3,7 +3,6 @@ package com.chenjing.apisecurity.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -11,7 +10,6 @@ import java.util.List;
  * @author Chenjing
  * @date 2018/12/29
  */
-@Component
 public class SpringActiveUtils {
 
     @Autowired

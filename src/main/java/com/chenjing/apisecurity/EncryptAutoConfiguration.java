@@ -52,7 +52,7 @@ public class EncryptAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(Encrypt.class)
     public Encrypt encrypt() {
-        log.debug("init System Encrypt...");
+        log.info("init System Encrypt");
         return new SecretProviderImpl();
     }
 }

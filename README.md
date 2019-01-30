@@ -29,7 +29,7 @@ api.encrypt.url-patterns=/*
 #如果激活application-dev.properties or application-dev.yml配置文件将不进行加密
 api.encrypt.excludeProfiles[0]=dev
 ```
-- 支持多产品，用户必须重写ProductProvider类，为不同的产品提供不同的加密密钥
+- 支持多产品，用户必须实现`ProductProvider`接口，为不同的产品提供不同的加密密钥
 ```java
 @Component
 public class ProductProviderImpl implements ProductProvider {
@@ -46,7 +46,7 @@ public class ProductProviderImpl implements ProductProvider {
 
     @Override
     public String getDecryptKey(HttpServletRequest request) {
-        return "fkhjklnHGR45";
+        return "GH354XASf513ss";
     }
 }
 ```
@@ -55,5 +55,5 @@ public class ProductProviderImpl implements ProductProvider {
 curl -H "X-Sign:SlpXeBkVNQ3UPUDTGktbwTBYa3YVGcWJuYEtsTLMEac"  http://127.0.0.1/hello?api_key=facebook
 ```
 ### tips
-* 选择实现***SignBuilder***接口来实现自己的验签规则
-* 选择实现***AbstractSecretProvider***类实现自己的加解密规则
+* 选择实现`SignBuilder`接口来实现自己的验签规则
+* 选择实现`AbstractSecretProvider`类实现自己的加解密规则

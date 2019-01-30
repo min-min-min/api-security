@@ -50,8 +50,7 @@ public class DecryptFilter implements Filter {
                 decryptData = decrypt.decrypt(payload, productProvider.getDecryptKey(request));
             } catch (Exception e) {
                 log.error("decrypt fail by {}", e.getMessage(), e);
-                // TODO: 2018/12/29  
-                throw new RuntimeException(e);
+                return;
             }
             log.debug("origin data ={} ,decrypt data ={}", payload, decryptData);
             requestWrapper.setPayload(decryptData.getBytes());

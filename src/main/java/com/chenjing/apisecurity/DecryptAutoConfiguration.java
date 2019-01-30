@@ -52,7 +52,7 @@ public class DecryptAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(Decrypt.class)
     public Decrypt decrypt() {
-        log.debug("init System Decrypt...");
+        log.info("init System Decrypt");
         return new SecretProviderImpl();
     }
 }

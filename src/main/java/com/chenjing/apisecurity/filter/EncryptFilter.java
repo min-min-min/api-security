@@ -56,8 +56,8 @@ public class EncryptFilter implements Filter {
                 encryptStr = encrypt.encrypt(result, productProvider.getEncryptKey(req));
                 log.debug("encrypt data = {}", encryptStr);
             } catch (Exception e) {
-                // TODO: 2018/12/29
-                throw new RuntimeException(e);
+                log.error("encrypt fail by {}", e.getMessage(), e);
+                return;
             }
             writeResponse(servletResponse, encryptStr);
         }

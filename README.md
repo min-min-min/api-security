@@ -1,6 +1,6 @@
 ## api-security
 ### 使用步骤
-- 验签属性设置
+- 验签属性设置（验签：接口验证签名，通过接口的验证才允许调用接口）
 ```yaml
 #启用验签
 api.hmac.enbaled=true
@@ -20,7 +20,7 @@ api.decrypt.url-patterns=/*
 #如果激活application-dev.properties or application-dev.yml配置文件将不进行解密
 api.decrypt.excludeProfiles[0]=dev
 ```
-- 解密属性设置
+- 加密属性设置
 ```yaml
 #启用加密
 api.encrypt.enabled=true
